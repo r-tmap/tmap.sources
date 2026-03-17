@@ -10,7 +10,6 @@ tmapShape.character = function(shp, is.main, crs, bbox, unit, filter, layer, shp
 	dt = data.table(dummy__ = TRUE, tmapID__ = NA_integer_, sel__ = TRUE)
 	dtcols = "dummy__"
 	if (is.null(bbox$x)) bbox$x = smeta$bbox
-	if (is.null(layer)) layer = smeta
 	shpTM = shapeTM(shp = shp, tmapID = integer(0), bbox = bbox, smeta = smeta)
 	structure(list(shpTM = shpTM, dt = dt, is.main = is.main, dtcols = dtcols, shpclass = "character", bbox = bbox, unit = unit, shp_name = shp_name, smeta = smeta, type_ids = NULL, type_vars = NULL), class = "tmapShape")
 }
@@ -63,6 +62,8 @@ tmapGetShapeMeta1.character = function(shp, layer, o) {
 		bbox = get_bbox_meta(meta)
 		vars = names(li$fields)
 	} else {
+
+		if (is.null(layer)) cli::cli_abort("{.field PMTiles} layer is required for remote PMTiles. Please specify it via {.fun tm_shape}")
 		url = shp
 		bbox = sf::st_bbox()
 		vars = character(0)

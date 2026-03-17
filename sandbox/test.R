@@ -30,6 +30,9 @@ tm_shape("http://localhost:6515/NLD_dist.pmtiles") +
 	tm_polygons(fill = "edu_fill") +
 	tm_add_legend(fill = c4a("plasma", n = 5), labels = levels(NLD_dist$edu_ids), type = "polygons")
 
+tm_shape("http://localhost:6515/NLD_dist.pmtiles", layer = "edu") +
+	tm_polygons(fill = "edu_fill") +
+	tm_add_legend(fill = c4a("plasma", n = 5), labels = levels(NLD_dist$edu_ids), type = "polygons")
 
 
 load_all("../freestiler/")

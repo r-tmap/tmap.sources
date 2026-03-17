@@ -1,0 +1,29 @@
+Package: tmap.sources
+Title: Data Sources for 'tmap'
+Version: 0.1
+LazyData: true
+Authors@R: c(
+	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))
+	)
+Description: 
+    Provides support for a variety of spatial data sources in 'tmap', 
+    including remote, tiled, and streaming formats. Enables the use 
+    of external vector and raster data without requiring full data 
+    import, facilitating efficient visualization workflows.
+License: GPL-3
+Encoding: UTF-8
+Depends: 
+    R (>= 4.1)
+Imports:
+    tmap (>= 4.2),
+    sf,
+    httr2,
+    jsonlite
+Suggests:
+    freestiler
+Remotes:
+    walkerke/freestiler
+URL: https://github.com/r-tmap/tmap.sources
+BugReports: https://github.com/r-tmap/tmap.sources/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3

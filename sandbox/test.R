@@ -54,3 +54,68 @@ maplibre() |>
 maplibre() |>
 	mapgl::add_pmtiles_source(id = "test123", url = "http://localhost:4234/NLD_dist.pmtiles") |>
 	mapgl::add_fill_layer(id = "temp", source = "test123", source_layer = "edu", fill_color = mapgl::get_column("edu_fill"))
+
+
+
+pmtiles::pm_show("https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles", metadata = T, header_json = T)
+
+freestiler:::.pmtiles_metadata("NLD_dist.pmtiles")
+pmtiles::pm_show("NLD_dist.pmtiles", metadata = T)
+
+
+tmap_source("https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles")
+
+
+tm_shape("https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles") +
+	tm_polygons(fill = "facade_color")
+
+library(mapgl)
+maplibre() |>
+	mapgl::add_pmtiles_source(id = "test123", url = "https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles") |>
+	mapgl::add_fill_layer(id = "temp", source = "test123", source_layer = "building", fill_color = mapgl::get_column("facade_color"))
+
+
+
+meta = read_pmtiles_info(source)
+layer = "building"
+
+
+b = get_pmtiles_sample_values(source, layer)
+
+tmap_source(source)
+
+
+
+source = "NLD_dist.pmtiles"
+source = "https://f004.backblazeb2.com/file/geospatial/koppen_geiger_climatezones_1991_2020_1km_numeric_3857.pmtiles"
+source = "https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles"
+
+tmap_source(source)
+
+source = "https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles"
+
+tm_shape(source) +
+	tm_polygons()
+
+tm_shape(source) +
+	tm_raster()
+
+
+maplibre() |>
+	mapgl::add_pmtiles_source(id = "test123", url = "https://f004.backblazeb2.com/file/geospatial/koppen_geiger_climatezones_1991_2020_1km_numeric_3857.pmtiles") |>
+	mapgl::add_raster_layer(id = "temp", source = "test123")
+
+maplibre(
+	style  = carto_style("positron"),
+	center = c(-100, 37),
+	zoom   = 3
+) |>
+	add_pmtiles_source(
+		id = "koppen-source",
+		url = "https://f004.backblazeb2.com/file/geospatial/koppen_geiger_climatezones_1991_2020_1km_numeric_3857.pmtiles",
+		source_type  = "raster"
+	) |>
+	add_raster_layer(
+		id = "koppen-layer",
+		source = "koppen-source"
+	)

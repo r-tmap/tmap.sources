@@ -1,4 +1,5 @@
 #' @export
+#' @importFrom tmap tmapReproject
 tmapReproject.character = function(shp, tmapID, bbox = NULL, ..., crs) {
 	shapeTM(shp, tmapID, bbox, ...)
 }
@@ -6,8 +7,9 @@ tmapReproject.character = function(shp, tmapID, bbox = NULL, ..., crs) {
 #' @export
 #' @import freestiler
 #' @import servr
+#' @import data.table
 tmapShape.character = function(shp, is.main, crs, bbox, unit, filter, layer, shp_name, smeta, o, tmf) {
-	dt = data.table(dummy__ = TRUE, tmapID__ = NA_integer_, sel__ = TRUE)
+	dt = data.table::data.table(dummy__ = TRUE, tmapID__ = NA_integer_, sel__ = TRUE)
 	dtcols = "dummy__"
 	if (is.null(bbox$x)) bbox$x = smeta$bbox
 	shpTM = shapeTM(shp = shp, tmapID = integer(0), bbox = bbox, smeta = smeta)
@@ -30,59 +32,29 @@ tmapGetShapeMeta2.character = function(shp, smeta, o) {
 
 #' @export
 tmapGetShapeMeta1.character = function(shp, layer, o) {
-	is_pmtiles <- function(x) {
-		is.character(x) && length(x) == 1 && grepl("\\.pmtiles($|\\?)", x, ignore.case = TRUE)
-	}
-	is_remote <- function(x) {
-		is.character(x) && length(x) == 1 &&
-			grepl("^(https?|ftp)://", x, ignore.case = TRUE)
-	}
-	is_local <- function(x) {
-		is.character(x) && length(x) == 1 && !is_remote(x)
-	}
+	meta = get_source_info(shp)
 
-	if (!is_pmtiles(shp)) cli::cli_abort("{.field data source} this data source is not implemented yet; only pmtiles are implemented")
-
-	if (is_local(shp)) {
-		shp = normalizePath(shp, mustWork = TRUE)
-		dir = dirname(shp)
-		port = servr::random_port()
-		# srv = servr::httr(dir = dir) # not sure why this doesn't work
-		srv = freestiler::serve_tiles(shp, port = port)
-		url = paste0(srv$url, "/", basename(shp))
-		meta = freestiler:::.pmtiles_metadata(shp)
-		layers = vapply(meta$metadata$vector_layers, "[[", "id", FUN.VALUE = character(1))
-		if (!is.null(layer)) {
-			if (!layer %in% layers) cli::cli_abort("{.field PMTiles} layer {.code {layer} not found. Available layers: {.code {layers}}")
-		} else {
-			layer = layers[1L]
-		}
-		lid = which(layer == layers)
-		li = meta$metadata$vector_layers[[lid]]
-		bbox = get_bbox_meta(meta)
-		vars = names(li$fields)
+	if (!is.null(layer)) {
+		if (!layer %in% meta$layers) cli::cli_abort("{.field PMTiles} layer {.code {layer} not found. Available layers: {.code {layers}}")
 	} else {
-
-		if (is.null(layer)) cli::cli_abort("{.field PMTiles} layer is required for remote PMTiles. Please specify it via {.fun tm_shape}")
-		url = shp
-		bbox = sf::st_bbox()
-		vars = character(0)
+		layer = meta$layers[1L]
 	}
-	type = "pmtiles"
+
+	vars = meta$layer_vars[[layer]]$variable
+
 	dims = character(0)
 	dims_vals = list()
 
-	list(bbox = bbox,
+	list(bbox = meta$bbox,
 		 layer = layer,
-		 url = url,
+		 url = meta$url,
 		 vars = vars,
 		 dims = dims,
 		 dims_vals = dims_vals,
-		 type = type)
+		 type = meta$type,
+		 tile_type = meta$tile_type)
 }
 
 
-get_bbox_meta = function(meta) {
-	sf::st_bbox(c(xmin = meta$min_longitude, xmax = meta$max_longitude, ymin = meta$min_latitude, ymax = meta$max_latitude), crs = sf::st_crs("OGC:CRS84"))
-}
+
 

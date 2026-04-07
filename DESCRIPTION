@@ -18,8 +18,7 @@ Imports:
     tmap (>= 4.2),
     sf,
     httr2,
-    jsonlite
-Suggests:
+    jsonlite,
     freestiler
 Remotes:
     walkerke/freestiler

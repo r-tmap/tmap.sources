@@ -15,7 +15,7 @@ reference:
 
 - title: GEt tmap source meta data
   contents:
-  - tmap_source_meta()
+  - tmap_source_meta
 
 navbar:
   structure:

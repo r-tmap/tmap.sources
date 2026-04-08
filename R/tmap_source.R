@@ -5,6 +5,7 @@
 #' @param x url to the source, or file path in case it is stored locally
 #' @import tmap
 #' @import freestiler
+#' @import cli
 #' @export
 #' @return list of meta data
 tmap_source_meta = function(x) {

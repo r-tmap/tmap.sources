@@ -19,7 +19,10 @@ Imports:
     sf,
     httr2,
     jsonlite,
-    freestiler
+    freestiler,
+    data.table,
+    cli,
+    servr
 Remotes:
     walkerke/freestiler
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap, walkerke/mapgl, r-tmap/tmap.mapgl

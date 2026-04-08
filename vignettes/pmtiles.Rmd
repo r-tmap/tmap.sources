@@ -32,7 +32,7 @@ knitr::knit_hooks$set(output = function(x, options) {
    x <- paste(c(x, ""), collapse = "\n")
    hook_output(x, options)
  })
-
+#load_all("../tmap");load_all("../tmap.mapgl");load_all();tmap_mode("maplibre")
 ```
 
 
@@ -57,8 +57,10 @@ OvertureMaps contain a few very large PMTiles. The following is one with the [bu
 
 
 ```{r, fig.height = 3.5}
+urls = tmap_source_overture()
+
 tm_shape(
-  "https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles", 
+  urls$building, 
   bbox = "Amsterdam") +
 tm_polygons(fill = "#ee7700") +
 tm_maplibre(zoom = 14)
@@ -71,36 +73,23 @@ We can also use a categorical color palette:
 library(tmap)
 library(tmap.sources)
 
-# Define the mapping
-building_subtypes <- data.frame(
-  level = c("residential", "commercial", "industrial", "educational",
-            "civic", "religious", "medical", "transportation",
-            "entertainment", "agricultural", "military", "outbuilding",
-            "service"),
-  color = c("#f4a460", "#4169e1", "#708090", "#ffd700",
-            "#dc143c", "#9370db", "#ff6347", "#20b2aa",
-            "#ff69b4", "#6b8e23", "#556b2f", "#d2b48c",
-            "#87ceeb"),
-  label = c("Residential", "Commercial", "Industrial", "Educational",
-            "Civic", "Religious", "Medical", "Transportation",
-            "Entertainment", "Agricultural", "Military", "Outbuilding",
-            "Service")
-)
+urls = tmap_source_overture()
+meta = tmap_source_meta(urls$buildings)
+vars = tmap_source_vars(meta, layer = "building")
+cats = tmap_source_cats(meta, layer = "building", var = "subtype")
 
 tm_shape(
-  "https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles",
+  url,
   bbox = "Amsterdam") +
 tm_polygons(
   fill = "subtype",
   fill.scale = tm_scale_categorical(
-    levels    = building_subtypes$level,
-    values    = building_subtypes$color,
-    labels    = building_subtypes$label,
-    value.na  = "#cccccc",
+    levels    = cats$categories,
+    values    = cats$palette,
+    value.na  = "#ffffff",
     label.na  = "Unknown"
   ),
   fill.legend = tm_legend("Building type")
 ) +
 tm_maplibre(zoom = 14)
 ```
-

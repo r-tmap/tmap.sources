@@ -35,7 +35,7 @@ tmapGetShapeMeta1.character = function(shp, layer, o) {
 	meta = get_source_info(shp)
 
 	if (!is.null(layer)) {
-		if (!layer %in% meta$layers) cli::cli_abort("{.field PMTiles} layer {.code {layer} not found. Available layers: {.code {layers}}")
+		if (!layer %in% meta$layers) cli::cli_abort("{.field PMTiles} layer {.code {layer}} not found. Available layers: {.code {layers}}")
 	} else {
 		layer = meta$layers[1L]
 	}

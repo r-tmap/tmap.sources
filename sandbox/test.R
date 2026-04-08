@@ -120,3 +120,23 @@ maplibre(
 		id = "koppen-layer",
 		source = "koppen-source"
 	)
+
+
+
+urls = tmap_source_overture()
+
+
+urls$buildings
+
+meta = tmap_source_meta(urls$transportation)
+meta = tmap_source_meta(urls$buildings)
+tmap_source_layers(meta)
+tmap_source_vars(meta, layer = "building")
+tmap_source_cats(meta, layer = "building", var = "subtype")
+tmap_source_cats(meta, layer = "building", var = "subtype")
+
+tmap_source_vars(meta, layer = "segment")
+
+tm_shape(meta$input, layer = "building") +
+	tm_polygons(fill = "subtype")
+

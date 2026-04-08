@@ -4,132 +4,155 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>PMTiles • tmap.sources</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="PMTiles">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="PMTiles">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">tmap.sources</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    <a class="navbar-brand me-2" href="../index.html">tmap.sources</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/pmtiles.html">PMTiles</a>
-    </li>
-  </ul>
-</li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/pmtiles">PMTiles</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/r-tmap/tmap.sources/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-tmap/tmap.sources/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
 
 
-      </header><script src="pmtiles_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="pmtiles_files/maplibre-gl-5.19.0/maplibre-gl.css" rel="stylesheet">
+<script src="pmtiles_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="pmtiles_files/maplibre-gl-5.19.0/maplibre-gl.css" rel="stylesheet">
 <script src="pmtiles_files/maplibre-gl-5.19.0/maplibre-gl.js"></script><link href="pmtiles_files/mapbox-gl-draw-1.5.0/mapbox-gl-draw.css" rel="stylesheet">
 <script src="pmtiles_files/mapbox-gl-draw-1.5.0/mapbox-gl-draw.js"></script><script src="pmtiles_files/freehand-mode-1.0.0/freehand-mode.js"></script><script src="pmtiles_files/rectangle-mode-1.0.0/rectangle-mode.js"></script><script src="pmtiles_files/radius-mode-1.0.0/radius-mode.js"></script><link href="pmtiles_files/maplibre-gl-geocoder-1.5.0/maplibre-gl-geocoder.css" rel="stylesheet">
 <script src="pmtiles_files/maplibre-gl-geocoder-1.5.0/maplibre-gl-geocoder.min.js"></script><script src="pmtiles_files/mapbox-gl-globe-minimap-1.2.1/bundle.js"></script><script src="pmtiles_files/pmtiles-4.4.0/pmtiles.js"></script><script src="pmtiles_files/h3j-h3t-0.9.2/h3j_h3t.js"></script><link href="pmtiles_files/maptiler-geocoding-control-2.1.7/style.css" rel="stylesheet">
 <script src="pmtiles_files/maptiler-geocoding-control-2.1.7/maplibregl.umd.js"></script><script src="pmtiles_files/turf-7.3.0/turf.min.js"></script><script src="pmtiles_files/turf-operations-1.0.0/turf-operations.js"></script><script src="pmtiles_files/html2canvas-1.4.1/html2canvas.min.js"></script><script src="pmtiles_files/screenshot-1.0.0/screenshot.js"></script><link href="pmtiles_files/legend-interactivity-1.0.0/legend-interactivity.css" rel="stylesheet">
 <script src="pmtiles_files/legend-interactivity-1.0.0/legend-interactivity.js"></script><script src="pmtiles_files/maplibregl-binding-0.4.5.9000/maplibregl.js"></script><link href="pmtiles_files/layers-control-1.0.0/layers-control.css" rel="stylesheet">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>PMTiles</h1>
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>PMTiles</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/r-tmap/tmap.sources/blob/main/vignettes/pmtiles.Rmd" class="external-link"><code>vignettes/pmtiles.Rmd</code></a></small>
-      <div class="hidden name"><code>pmtiles.Rmd</code></div>
-
+      <div class="d-none name"><code>pmtiles.Rmd</code></div>
     </div>
 
     
     
 <div class="section level2">
-<h2 id="mode-maplibre">Mode maplibre<a class="anchor" aria-label="anchor" href="#mode-maplibre"></a>
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Currently, the only mode that supports pmtiles is
-<code>maplibre</code>:</p>
+<p>Until version 4.3, it was only possible to visualize spatial data
+stored in memory with <code>tmap</code>, e.g. objects from the class
+packages <code>sf</code>, <code>terra</code>, or <code>stars</code>.
+This package, <code>tmap.sources</code> makes it possible to visualize
+remote spatial data. Currently only <code>PMTiles</code>, a remote
+tile-based data sources are supported, but support for other remote data
+sources will be added later.</p>
+<p>To run <code>tmap.sources</code>, besides <code>tmap</code>, another
+package is required, namely <a href="https://r-tmap.github.io/tmap.mapgl/articles/mapgl" class="external-link"><code>tmap.mapgl</code></a>,
+because we require the tmap mode <code>"maplibre"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tmap_mode</span><span class="op">(</span><span class="st">"maplibre"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap" class="external-link">tmap</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap.mapgl" class="external-link">tmap.mapgl</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap.sources" class="external-link">tmap.sources</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tmap_mode.html" class="external-link">tmap_mode</a></span><span class="op">(</span><span class="st">"maplibre"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> tmap modes <span style="color: #0000BB;">"plot"</span> -&gt; <span style="color: #0000BB;">"view"</span> -&gt; <span style="color: #0000BB;">"mapbox"</span> -&gt; <span style="color: #0000BB; font-weight: bold;">"maplibre"</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> rotate with `tmap::rtm()`switch to "plot" with `tmap::ttm()`</span></span></code></pre></div>
-<p>OvertureMaps contain a few very large pmtiles; one with all the <a href="https://docs.overturemaps.org/guides/buildings/" class="external-link">buildings</a>:</p>
+</div>
+<div class="section level2">
+<h2 id="remote-pmtiles-file">Remote PMTiles file<a class="anchor" aria-label="anchor" href="#remote-pmtiles-file"></a>
+</h2>
+<p>OvertureMaps contain a few very large PMTiles. The following is one
+with the <a href="https://docs.overturemaps.org/guides/buildings/" class="external-link">buildings</a>,
+across the World.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tm_shape</span><span class="op">(</span><span class="st">"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles"</span>, bbox <span class="op">=</span> <span class="st">"Amsterdam"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">tm_polygons</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#ee7700"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">tm_maplibre</span><span class="op">(</span>zoom <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles"</span>, </span>
+<span>  bbox <span class="op">=</span> <span class="st">"Amsterdam"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#ee7700"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap.mapgl/reference/tm_maplibre.html" class="external-link">tm_maplibre</a></span><span class="op">(</span>zoom <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre></div>
 <div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:336px;" class="maplibregl html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"style":"https://tiles.openfreemap.org/styles/liberty","center":[4.9039699,52.354619],"zoom":14,"bearing":0,"pitch":0,"projection":"globe","additional_params":[],"navigation_control":{"show_compass":true,"show_zoom":true,"visualize_pitch":true,"position":"top-right","orientation":"vertical"},"setProjection":[{"projection":"globe"}],"globe_control":{"position":"top-right"},"sources":[{"id":"group1_layer1","type":"vector","url":"pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles"}],"layers":[{"id":"group1_layer1polygons_fill","type":"fill","source":"group1_layer1","source_layer":"building","paint":{"fill-antialias":true,"fill-color":"#EE7700","fill-opacity":1,"fill-translate-anchor":"map"},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null},{"id":"group1_layer1polygons_border","type":"line","source":"group1_layer1","source_layer":"building","paint":{"line-color":"#404040","line-opacity":1,"line-translate-anchor":"map","line-width":1},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null}],"layers_control":{"control_id":"layers-control-3dfe6","position":"top-left","layers":{"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles\"":["group1_layer1polygons_fill","group1_layer1polygons_border"]},"layers_config":[{"label":"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2024-07-22/buildings.pmtiles\"","ids":["group1_layer1polygons_fill","group1_layer1polygons_border"],"type":"group"}],"collapsible":true,"use_icon":true,"custom_colors":null,"margin_top":null,"margin_right":null,"margin_bottom":null,"margin_left":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"style":"https://tiles.openfreemap.org/styles/liberty","center":[4.9039699,52.354619],"zoom":14,"bearing":0,"pitch":0,"projection":"globe","additional_params":[],"navigation_control":{"show_compass":true,"show_zoom":true,"visualize_pitch":true,"position":"top-right","orientation":"vertical"},"setProjection":[{"projection":"globe"}],"globe_control":{"position":"top-right"},"sources":[{"id":"group1_layer1","type":"vector","url":"pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles"}],"layers":[{"id":"group1_layer1polygons_fill","type":"fill","source":"group1_layer1","source_layer":"building","paint":{"fill-antialias":true,"fill-color":"#EE7700","fill-opacity":1,"fill-translate-anchor":"map"},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null},{"id":"group1_layer1polygons_border","type":"line","source":"group1_layer1","source_layer":"building","paint":{"line-color":"#404040","line-opacity":1,"line-translate-anchor":"map","line-width":1},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null}],"layers_control":{"control_id":"layers-control-3dfe6","position":"top-left","layers":{"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles\"":["group1_layer1polygons_fill","group1_layer1polygons_border"]},"layers_config":[{"label":"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles\"","ids":["group1_layer1polygons_fill","group1_layer1polygons_border"],"type":"group"}],"collapsible":true,"use_icon":true,"custom_colors":null,"margin_top":null,"margin_right":null,"margin_bottom":null,"margin_left":null}},"evals":[],"jsHooks":[]}</script><p>We can also use a categorical color palette:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap" class="external-link">tmap</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap.sources" class="external-link">tmap.sources</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define the mapping</span></span>
+<span><span class="va">building_subtypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"residential"</span>, <span class="st">"commercial"</span>, <span class="st">"industrial"</span>, <span class="st">"educational"</span>,</span>
+<span>            <span class="st">"civic"</span>, <span class="st">"religious"</span>, <span class="st">"medical"</span>, <span class="st">"transportation"</span>,</span>
+<span>            <span class="st">"entertainment"</span>, <span class="st">"agricultural"</span>, <span class="st">"military"</span>, <span class="st">"outbuilding"</span>,</span>
+<span>            <span class="st">"service"</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#f4a460"</span>, <span class="st">"#4169e1"</span>, <span class="st">"#708090"</span>, <span class="st">"#ffd700"</span>,</span>
+<span>            <span class="st">"#dc143c"</span>, <span class="st">"#9370db"</span>, <span class="st">"#ff6347"</span>, <span class="st">"#20b2aa"</span>,</span>
+<span>            <span class="st">"#ff69b4"</span>, <span class="st">"#6b8e23"</span>, <span class="st">"#556b2f"</span>, <span class="st">"#d2b48c"</span>,</span>
+<span>            <span class="st">"#87ceeb"</span><span class="op">)</span>,</span>
+<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Residential"</span>, <span class="st">"Commercial"</span>, <span class="st">"Industrial"</span>, <span class="st">"Educational"</span>,</span>
+<span>            <span class="st">"Civic"</span>, <span class="st">"Religious"</span>, <span class="st">"Medical"</span>, <span class="st">"Transportation"</span>,</span>
+<span>            <span class="st">"Entertainment"</span>, <span class="st">"Agricultural"</span>, <span class="st">"Military"</span>, <span class="st">"Outbuilding"</span>,</span>
+<span>            <span class="st">"Service"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles"</span>,</span>
+<span>  bbox <span class="op">=</span> <span class="st">"Amsterdam"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span></span>
+<span>  fill <span class="op">=</span> <span class="st">"subtype"</span>,</span>
+<span>  fill.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_categorical.html" class="external-link">tm_scale_categorical</a></span><span class="op">(</span></span>
+<span>    levels    <span class="op">=</span> <span class="va">building_subtypes</span><span class="op">$</span><span class="va">level</span>,</span>
+<span>    values    <span class="op">=</span> <span class="va">building_subtypes</span><span class="op">$</span><span class="va">color</span>,</span>
+<span>    labels    <span class="op">=</span> <span class="va">building_subtypes</span><span class="op">$</span><span class="va">label</span>,</span>
+<span>    value.na  <span class="op">=</span> <span class="st">"#cccccc"</span>,</span>
+<span>    label.na  <span class="op">=</span> <span class="st">"Unknown"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  fill.legend <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_legend.html" class="external-link">tm_legend</a></span><span class="op">(</span><span class="st">"Building type"</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-tmap.github.io/tmap.mapgl/reference/tm_maplibre.html" class="external-link">tm_maplibre</a></span><span class="op">(</span>zoom <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre></div>
+<div id="htmlwidget-e5c8c404fe174e4c81bd" style="width:100%;height:336px;" class="maplibregl html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"style":"https://tiles.openfreemap.org/styles/liberty","center":[4.9039699,52.354619],"zoom":14,"bearing":0,"pitch":0,"projection":"globe","additional_params":[],"navigation_control":{"show_compass":true,"show_zoom":true,"visualize_pitch":true,"position":"top-right","orientation":"vertical"},"setProjection":[{"projection":"globe"}],"globe_control":{"position":"top-right"},"sources":[{"id":"group1_layer1","type":"vector","url":"pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles"}],"layers":[{"id":"group1_layer1polygons_fill","type":"fill","source":"group1_layer1","source_layer":"building","paint":{"fill-antialias":true,"fill-color":["match",["get","subtype"],"residential","#F4A460","commercial","#4169E1","industrial","#708090","educational","#FFD700","civic","#DC143C","religious","#9370DB","medical","#FF6347","transportation","#20B2AA","entertainment","#FF69B4","agricultural","#6B8E23","military","#556B2F","outbuilding","#D2B48C","service","#87CEEB","#CCCCCC"],"fill-opacity":1,"fill-translate-anchor":"map"},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null},{"id":"group1_layer1polygons_border","type":"line","source":"group1_layer1","source_layer":"building","paint":{"line-color":"#404040","line-opacity":1,"line-translate-anchor":"map","line-width":1},"layout":{"visibility":"visible"},"slot":null,"minzoom":null,"maxzoom":null,"popup":null,"tooltip":null,"hover_options":null,"before_id":null,"filter":null}],"legend_html":" <div id=\"legend-808c5\" class=\"mapboxgl-legend bottom-right\" data-layer-id=\"group1_layer1polygons_border\" data-interactive=\"true\" data-legend-type=\"categorical\"><h2>Building type<\/h2><div class=\"legend-item\" data-value=\"Residential\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#F4A460; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Residential<\/span><\/div><div class=\"legend-item\" data-value=\"Commercial\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#4169E1; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Commercial<\/span><\/div><div class=\"legend-item\" data-value=\"Industrial\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#708090; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Industrial<\/span><\/div><div class=\"legend-item\" data-value=\"Educational\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#FFD700; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Educational<\/span><\/div><div class=\"legend-item\" data-value=\"Civic\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#DC143C; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Civic<\/span><\/div><div class=\"legend-item\" data-value=\"Religious\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#9370DB; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Religious<\/span><\/div><div class=\"legend-item\" data-value=\"Medical\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#FF6347; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Medical<\/span><\/div><div class=\"legend-item\" data-value=\"Transportation\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#20B2AA; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Transportation<\/span><\/div><div class=\"legend-item\" data-value=\"Entertainment\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#FF69B4; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Entertainment<\/span><\/div><div class=\"legend-item\" data-value=\"Agricultural\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#6B8E23; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Agricultural<\/span><\/div><div class=\"legend-item\" data-value=\"Military\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#556B2F; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Military<\/span><\/div><div class=\"legend-item\" data-value=\"Outbuilding\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#D2B48C; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Outbuilding<\/span><\/div><div class=\"legend-item\" data-value=\"Service\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#87CEEB; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Service<\/span><\/div><div class=\"legend-item\" data-value=\"Unknown\" data-enabled=\"true\"><div class=\"legend-patch-container\" style=\"width:20px; height:20px;\"><span class=\"legend-color legend-shape-square\" style=\"background-color:#CCCCCC; width: 20px; height: 20px;\"><\/span><\/div><span class=\"legend-text\">Unknown<\/span><\/div><\/div>","legend_css":" \n    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');\n    #legend-808c5 h2 {\n      font-size: 14px;\n      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n      line-height: 20px;\n      margin-bottom: 10px;\n      margin-top: 0px;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      text-overflow: ellipsis;\n    }\n    #legend-808c5 {\n      position: absolute;\n      border-radius: 10px;\n      margin: 10px;\n      max-width: 250px;\n      background-color: #ffffff80;\n      padding: 10px 20px;\n      z-index: 1002;\n    }\n    #legend-808c5.top-left {\n      top: 0px;\n      left: 0px;\n    }\n    #legend-808c5.bottom-left {\n      bottom: 35px;\n      left: 0px;\n    }\n    #legend-808c5.top-right {\n      top: 0px;\n      right: 0px;\n    }\n    #legend-808c5.bottom-right {\n      bottom: 35px;\n      right: 0px;\n    }\n    #legend-808c5 .legend-item {\n      display: flex;\n      align-items: center;\n      margin-bottom: 5px;\n      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n    }\n    #legend-808c5 .legend-patch-container {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      margin-right: 5px;\n    }\n    #legend-808c5 .legend-color {\n      display: inline-block;\n      flex-shrink: 0;\n    }\n    #legend-808c5 .legend-shape-line {\n      align-self: center;\n      image-rendering: pixelated;\n      image-rendering: -moz-crisp-edges;\n      image-rendering: crisp-edges;\n      transform: translateZ(0);\n      -webkit-transform: translateZ(0);\n    }\n    #legend-808c5 .legend-shape-hexagon {\n      display: block;\n    }\n    #legend-808c5 .legend-shape-custom {\n      display: block;\n    }\n    #legend-808c5 .legend-text {\n      flex-grow: 1;\n      text-overflow: ellipsis;\n      overflow: hidden;\n    }\n  ","legend_interactivity":[{"legendId":"legend-808c5","layerId":"group1_layer1polygons_border","type":"categorical","values":["Residential","Commercial","Industrial","Educational","Civic","Religious","Medical","Transportation","Entertainment","Agricultural","Military","Outbuilding","Service","Unknown"],"colors":["#F4A460","#4169E1","#708090","#FFD700","#DC143C","#9370DB","#FF6347","#20B2AA","#FF69B4","#6B8E23","#556B2F","#D2B48C","#87CEEB","#CCCCCC"],"filterColumn":null,"filterValues":["Residential","Commercial","Industrial","Educational","Civic","Religious","Medical","Transportation","Entertainment","Agricultural","Military","Outbuilding","Service","Unknown"],"breaks":null}],"layers_control":{"control_id":"layers-control-466ff","position":"top-left","layers":{"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles\"":["group1_layer1polygons_fill","group1_layer1polygons_border"]},"layers_config":[{"label":"\"https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/buildings.pmtiles\"","ids":["group1_layer1polygons_fill","group1_layer1polygons_border"],"type":"group"}],"collapsible":true,"use_icon":true,"custom_colors":null,"margin_top":null,"margin_right":null,"margin_bottom":null,"margin_left":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Martijn Tennekes.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Martijn Tennekes.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 

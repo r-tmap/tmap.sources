@@ -1,0 +1,19 @@
+# tmap.sources
+
+Provides support for a variety of spatial data sources in ‘tmap’,
+including remote, tiled, and streaming formats. Enables the use of
+external vector and raster data without requiring full data import,
+facilitating efficient visualization workflows.
+
+# Package index
+
+## GEt tmap source meta data
+
+- [`tmap_source_meta()`](https://r-tmap.github.io/tmap.sources/reference/tmap_source_meta.md)
+  : Get tmap source meta data
+
+# Articles
+
+### All vignettes
+
+- [PMTiles](https://r-tmap.github.io/tmap.sources/articles/pmtiles.md):

@@ -12,6 +12,7 @@ NLD_dist$edu_ids = cut(NLD_dist$edu_appl_sci, breaks = c(0, 21.5, 29.5, 39.8, 51
 NLD_dist$edu_fill = c4a("plasma", 5)[cut(NLD_dist$edu_appl_sci, breaks = c(0, 21.5, 29.5, 39.8, 51.5, 90), include.lowest = TRUE)]
 NLD_dist$edu_fill[is.na(NLD_dist$edu_fill)] = c4a_na("plasma")
 
+
 freestile(
 	NLD_dist,
 	"NLD_dist.pmtiles",

@@ -1,0 +1,27 @@
+url: https://r-tmap.github.io/tmap.sources/
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#5f8640"
+
+# figures:
+  dev: ragg::agg_png
+  dpi: 300
+
+development:
+  version_tooltip: "tmap.sources documentation"
+
+reference:
+
+- title: GEt tmap source meta data
+  contents:
+  - tmap_source_meta()
+
+navbar:
+  structure:
+    left:  [reference, pmtiles, news]
+  components:
+    home: ~
+    pmtiles:
+      text: PMTiles
+      href: articles/pmtiles

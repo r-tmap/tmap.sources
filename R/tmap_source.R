@@ -37,8 +37,6 @@ get_source_info = function(shp, start_local_host = TRUE) {
 
 		if (start_local_host) {
 			port = servr::random_port()
-			#dir = dirname(shp)
-			# srv = servr::httr(dir = dir) # not sure why this doesn't work
 			srv = freestiler::serve_tiles(shp, port = port)
 			url = paste0(srv$url, "/", basename(shp))
 		} else {

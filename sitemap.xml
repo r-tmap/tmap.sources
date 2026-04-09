@@ -2,10 +2,14 @@
 <url><loc>https://r-tmap.github.io/tmap.sources/404.html</loc></url>
 <url><loc>https://r-tmap.github.io/tmap.sources/LICENSE-text.html</loc></url>
 <url><loc>https://r-tmap.github.io/tmap.sources/articles/index.html</loc></url>
-<url><loc>https://r-tmap.github.io/tmap.sources/articles/pmtiles.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/articles/intro.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/articles/pmtiles_local.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/articles/pmtiles_overture.html</loc></url>
 <url><loc>https://r-tmap.github.io/tmap.sources/authors.html</loc></url>
 <url><loc>https://r-tmap.github.io/tmap.sources/index.html</loc></url>
 <url><loc>https://r-tmap.github.io/tmap.sources/reference/index.html</loc></url>
-<url><loc>https://r-tmap.github.io/tmap.sources/reference/tmap_source_meta.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/reference/tmap_src_accessors.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/reference/tmap_src_meta.html</loc></url>
+<url><loc>https://r-tmap.github.io/tmap.sources/reference/tmap_src_overture.html</loc></url>
 </urlset>
 

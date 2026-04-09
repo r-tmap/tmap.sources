@@ -2,8 +2,10 @@ pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
-  pmtiles: pmtiles.html
-last_built: 2026-04-08T19:59Z
+  intro: intro.html
+  pmtiles_local: pmtiles_local.html
+  pmtiles_overture: pmtiles_overture.html
+last_built: 2026-04-09T11:52Z
 urls:
   reference: https://r-tmap.github.io/tmap.sources/reference
   article: https://r-tmap.github.io/tmap.sources/articles

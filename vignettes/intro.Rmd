@@ -45,7 +45,6 @@ For instance, the dataset `NLD_dist` is an `sf` object. A choropleth is created 
 
 ```{r}
 library(tmap)
-
 tm_shape(NLD_dist) +
 	tm_polygons(
 		fill = "edu_appl_sci",
@@ -62,7 +61,6 @@ To run `tmap.sources`, besides `tmap`, another package is required, namely [`tma
 
 
 ```{r}
-library(tmap)
 library(tmap.mapgl)
 library(tmap.sources)
 tmap_mode("maplibre")

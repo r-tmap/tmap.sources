@@ -41,12 +41,24 @@ knitr::knit_hooks$set(output = function(x, options) {
 
 <to be added, some introduction about PMTiles format>
 
+```{r}
+library(tmap)
+library(tmap.mapgl)
+library(tmap.sources)
+tmap_mode("maplibre")
+```
+
 ## Remote PMTiles file
 
 OvertureMaps contain a few very large PMTiles. The following is one with the [buildings](https://docs.overturemaps.org/guides/buildings/), across the World.
 
 
-```{r, fig.height = 3.5}
+```{r, fig.height = 4.5}
+library(tmap)
+library(tmap.mapgl)
+library(tmap.sources)
+tmap_mode("maplibre")
+
 urls = tmap_src_overture()
 
 tm_shape(
@@ -59,10 +71,7 @@ tm_maplibre(zoom = 14)
 
 We can also use a categorical color palette:
 
-```{r, fig.height = 3.5}
-library(tmap)
-library(tmap.sources)
-
+```{r, fig.height = 4.5}
 urls = tmap_src_overture()
 meta = tmap_src_meta(urls$buildings)
 vars = tmap_src_vars(meta, layer = "building")

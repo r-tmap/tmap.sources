@@ -48,7 +48,7 @@ skipped entirely. So getting all the categoires (categorical scale), or
 retrieving the range and optimal interval breaks (interval scale) on
 basis on the complete data is not possbile, simply because it would take
 a lot of computation time (some remote datasets may cover trillions of
-objects). Instead, two scales are supported:
+objects). Instead, these scales are supported:
 
 - As-is scale `tm_scale_asis`, in which the visual values (e.g. color
   values) are already contained in the data.
@@ -57,6 +57,8 @@ objects). Instead, two scales are supported:
   levels and a vector of correspoding visual values (e.g. colors). And
   optionally a vector of corresponding labels (in case they differ from
   levels).
+- The continuous scale `tm_scale_continuous` is used to scale the height
+  of 3d polygons.
 
-It would also be possible to implement numeric scale (interval and
-continuous). For developers: pull requests welcome.
+Other scales, in particular numeric scales (both interval and
+continuous) will be added later.

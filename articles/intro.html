@@ -33,7 +33,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-pmtiles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">PMTiles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-pmtiles">
-<li><a class="dropdown-item" href="../articles/pmtiles_local.html">PMTiles - self created</a></li>
+<li><a class="dropdown-item" href="../articles/pmtiles_local.html">Self-created PMTiles</a></li>
     <li><a class="dropdown-item" href="../articles/pmtiles_overture.html">PMTiles - Overture</a></li>
   </ul>
 </li>
@@ -107,7 +107,7 @@ skipped entirely. So getting all the categoires (categorical scale), or
 retrieving the range and optimal interval breaks (interval scale) on
 basis on the complete data is not possbile, simply because it would take
 a lot of computation time (some remote datasets may cover trillions of
-objects). Instead, two scales are supported:</p>
+objects). Instead, these scales are supported:</p>
 <ul>
 <li>As-is scale <code>tm_scale_asis</code>, in which the visual values
 (e.g. color values) are already contained in the data.</li>
@@ -116,9 +116,11 @@ data contains the levels. The user has to specify the used mapping, so a
 vector of levels and a vector of correspoding visual values
 (e.g. colors). And optionally a vector of corresponding labels (in case
 they differ from levels).</li>
+<li>The continuous scale <code>tm_scale_continuous</code> is used to
+scale the height of 3d polygons.</li>
 </ul>
-<p>It would also be possible to implement numeric scale (interval and
-continuous). For developers: pull requests welcome.</p>
+<p>Other scales, in particular numeric scales (both interval and
+continuous) will be added later.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

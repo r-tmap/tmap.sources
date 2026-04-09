@@ -1,5 +1,5 @@
 ---
-title: PMTiles - self created
+title: Self-created PMTiles
 output: 
   bookdown::html_vignette2:
 editor_options: 
@@ -16,97 +16,256 @@ hook_output <- knitr::knit_hooks$get("output")
 knitr::knit_hooks$set(output = function(x, options) {
    lines <- options$output.lines
    if (is.null(lines)) {
-     return(hook_output(x, options))  # pass to default hook
+     return(hook_output(x, options))
    }
    x <- unlist(strsplit(x, "\n"))
    more <- "..."
-   if (length(lines)==1) {        # first n lines
+   if (length(lines)==1) {
      if (length(x) > lines) {
-       # truncate the output, but add ....
        x <- c(head(x, lines), more)
      }
    } else {
      x <- c(more, x[lines], more)
    }
-   # paste these lines together
    x <- paste(c(x, ""), collapse = "\n")
    hook_output(x, options)
  })
-#load_all("../tmap");load_all("../tmap.mapgl");load_all();tmap_mode("maplibre")
 ```
-
-
 
 ## Introduction
 
-To run `tmap.sources`, besides `tmap`, another package is required, namely [`tmap.mapgl`](https://r-tmap.github.io/tmap.mapgl/articles/mapgl), because we require the tmap mode `"maplibre"`:
-
+PMTiles is an efficient format for serving vector and raster map tiles directly
+from a single file, without a tile server. This vignette shows how to create
+PMTiles from `sf` objects using the `freestiler` package, and how to visualize
+them with `tmap.mapgl`.
 
 ```{r}
 library(tmap)
 library(tmap.mapgl)
 library(tmap.sources)
+library(freestiler)
+library(cols4all)
 tmap_mode("maplibre")
 ```
 
-In order to create PMTiles locally, the package `freestiler` is required. The created `PMTiles` files can be viewed from a local server, or be uploaded to a remote server.
+Two things to decide before writing a PMTiles file:
 
+- **Which columns to include.** Only columns present in the file can be used for
+  styling. Add any variables you intend to map before calling `freestile()`.
+- **How to encode the aesthetic.** For categorical styling, either pre-compute a
+  color column (`tm_scale_asis`) or include a factor column and use
+  `tm_scale_categorical`. Both approaches are shown below for polygons.
 
-```{r}
-library(freestiler)
-```
+## Polygons
 
-## Creation of PMTiles
-
-If we have a `sf` object for which we would like to create a PMTiles file, we have to think in advance what we would like to visualize. To replicate the choropleth in the introduction vignette, we have two options:
-
-1. We generate a color column, and use the as-is scale (`tm_scale_asis`)
-2. We generate a categorical (factor) column and use the categorical scale (`tm_scale_categorical`)
-
-Let's do both:
+### Preparing the data
 
 ```{r}
-# add categorical variable
-NLD_dist$edu_cat = cut(NLD_dist$edu_appl_sci, breaks = c(0, 21.5, 29.5, 39.8, 51.5, 90))
+data("NLD_dist", package = "tmap")
 
-# get used colors
-library(cols4all)
-pal = c4a("plasma", 5)
-colorNA = c4a_na("plasma")
+breaks  <- c(0, 21.5, 29.5, 39.8, 51.5, 90)
+pal     <- c4a("plasma", 5)
+colorNA <- c4a_na("plasma")
 
-# add color variable
-NLD_dist$edu_fill = pal[cut(NLD_dist$edu_appl_sci, breaks = c(0, 21.5, 29.5, 39.8, 51.5, 90), include.lowest = TRUE)]
-NLD_dist$edu_fill[is.na(NLD_dist$edu_fill)] = colorNA
+NLD_dist$edu_cat  <- cut(NLD_dist$edu_appl_sci, breaks = breaks)
+NLD_dist$edu_fill <- pal[cut(NLD_dist$edu_appl_sci, breaks = breaks,
+                             include.lowest = TRUE)]
+NLD_dist$edu_fill[is.na(NLD_dist$edu_fill)] <- colorNA
 ```
 
-Now we can create the PMTiles file:
+### Creation of PMTiles
 
 ```{r}
 freestile(
-	NLD_dist,
-	"NLD_dist.pmtiles",
-	layer_name = "edu",
-	min_zoom = 4,
-	max_zoom = 15
+  NLD_dist,
+  "NLD_dist.pmtiles",
+  layer_name = "edu",
+  min_zoom = 4,
+  max_zoom = 15
 )
 ```
 
-### Option 1: color column
+### Visualization
 
-```{r, fig.height = 4.5}
+**Option 1:** use the pre-computed color column directly with `tm_scale_asis`.
+The legend must be added manually since tmap cannot infer it from raw color
+values.
+
+```{r, eval = FALSE}
 tm_shape("NLD_dist.pmtiles") +
   tm_polygons(fill = "edu_fill") +
-  tm_add_legend(fill = pal, labels = levels(NLD_dist$edu_cat), type = "polygons", title = "Education")
+  tm_add_legend(fill = pal, labels = levels(NLD_dist$edu_cat),
+                type = "polygons", title = "Education")
+```
+```{r, echo = FALSE, fig.height = 4.5}
+tm_shape(NLD_dist) +
+  tm_polygons(fill = "edu_fill") +
+  tm_add_legend(fill = pal, labels = levels(NLD_dist$edu_cat),
+                type = "polygons", title = "Education")
 ```
 
+**Option 2:** use the factor column with `tm_scale_categorical`. tmap handles
+the color mapping and legend automatically.
 
-### Option 2: categorical variable
-
-```{r, fig.height = 4.5}
+```{r, eval = FALSE}
 tm_shape("NLD_dist.pmtiles") +
   tm_polygons(
-    fill = "edu_cat",
-    fill.scale = tm_scale_categorical(values = pal, levels = levels(NLD_dist$edu_cat)),
+    fill        = "edu_cat",
+    fill.scale  = tm_scale_categorical(values = pal,
+                                       levels = levels(NLD_dist$edu_cat)),
     fill.legend = tm_legend(title = "Education")
   )
+```
+```{r, echo = FALSE, fig.height = 4.5}
+tm_shape(NLD_dist) +
+  tm_polygons(
+    fill        = "edu_cat",
+    fill.scale  = tm_scale_categorical(values = pal,
+                                       levels = levels(NLD_dist$edu_cat)),
+    fill.legend = tm_legend(title = "Education")
+  )
+```
+
+## Lines
+
+### Preparing the data
+
+`World_rivers` contains a `scalerank` variable (1 = largest rivers). We keep
+the six most prominent ranks and convert to a factor for categorical styling.
+
+```{r}
+data("World_rivers", package = "tmap")
+World_rivers <- World_rivers[World_rivers$scalerank <= 6, ]
+World_rivers$rank_cat <- factor(paste0("rank ", World_rivers$scalerank),
+                                levels = paste0("rank ", 1:6))
+river_pal <- c4a("-seaborn.crest", 6)
+```
+
+### Creation of PMTiles
+
+```{r}
+freestile(World_rivers, "World_rivers.pmtiles",
+          layer_name = "rivers", min_zoom = 0, max_zoom = 10)
+```
+
+### Visualization
+
+```{r, eval = FALSE}
+tm_shape("World_rivers.pmtiles") +
+  tm_lines(
+    lwd        = 6,
+    col        = "rank_cat",
+    col.scale  = tm_scale_categorical(values = river_pal,
+                                      levels = levels(World_rivers$rank_cat)),
+    col.legend = tm_legend(title = "River rank")
+  )
+```
+```{r, echo = FALSE, fig.height = 4.5}
+tm_shape(World_rivers) +
+  tm_lines(
+    lwd        = 6,
+    col        = "rank_cat",
+    col.scale  = tm_scale_categorical(values = river_pal,
+                                      levels = levels(World_rivers$rank_cat)),
+    col.legend = tm_legend(title = "River rank")
+  )
+```
+
+## Points
+
+When creating point PMTiles from polygon data, centroids must be computed
+first. Passing polygon geometry to `freestile()` for use with `tm_dots()` or
+`tm_symbols()` will result in circles rendered at every vertex rather than at
+the feature centroid.
+
+### Preparing the data
+
+```{r}
+NLD_dist$edu_cat <- cut(NLD_dist$edu_appl_sci, breaks = breaks)
+
+# centroid step required before freestile() when source is polygon sf
+NLD_pts <- sf::st_centroid(NLD_dist)
+```
+
+### Creation of PMTiles
+
+```{r}
+freestile(NLD_pts, "NLD_dist_pts.pmtiles",
+          layer_name = "districts", min_zoom = 5, max_zoom = 15)
+```
+
+### Visualization
+
+```{r, eval = FALSE}
+tm_shape("NLD_dist_pts.pmtiles") +
+  tm_dots(
+    fill        = "edu_cat",
+    fill.scale  = tm_scale_categorical(values = pal,
+                                       levels = levels(NLD_dist$edu_cat)),
+    fill.legend = tm_legend(title = "Education")
+  )
+```
+```{r, echo = FALSE, fig.height = 4.5}
+tm_shape(NLD_pts) +
+  tm_dots(
+    fill        = "edu_cat",
+    fill.scale  = tm_scale_categorical(values = pal,
+                                       levels = levels(NLD_dist$edu_cat)),
+    fill.legend = tm_legend(title = "Education")
+  )
+```
+
+## 3D Polygons
+
+Extruded polygons require a numeric height variable. Because the raw data range
+is not available from the remote tile, it must be declared explicitly via
+`tm_scale_continuous(limits = ...)`. Use `range()` on your data beforehand to
+find the appropriate values.
+
+### Preparing the data
+
+```{r}
+NLD_dist$edu_fill <- pal[as.integer(
+  cut(NLD_dist$edu_appl_sci, breaks = breaks, include.lowest = TRUE)
+)]
+NLD_dist$edu_fill[is.na(NLD_dist$edu_fill)] <- colorNA
+NLD_dist$pop_density <- NLD_dist$population / as.numeric(NLD_dist$area)
+pop_density_range    <- range(NLD_dist$pop_density, na.rm = TRUE)
+```
+
+### Creation of PMTiles
+
+The same `NLD_dist.pmtiles` written above already contains `pop_density`, so
+no new file is needed here — provided `freestile()` was called after adding the
+column.
+
+```{r, eval = FALSE}
+# only needed if NLD_dist.pmtiles was created before pop_density was added
+freestile(NLD_dist, "NLD_dist.pmtiles",
+          layer_name = "edu", min_zoom = 4, max_zoom = 15)
+```
+
+### Visualization
+
+```{r, eval = FALSE}
+tm_shape("NLD_dist.pmtiles") +
+  tm_polygons_3d(
+    fill         = "edu_fill",
+    height       = "pop_density",
+    height.scale = tm_scale_continuous(limits = pop_density_range),
+    fill.legend  = tm_legend(title = "Education (% applied sci.)"),
+    options      = opt_tm_polygons_3d(height.min = 2000)
+  ) +
+  tm_maplibre(pitch = 45)
+```
+```{r, echo = FALSE, fig.height = 4.5}
+tm_shape(NLD_dist) +
+  tm_polygons_3d(
+    fill         = "edu_fill",
+    height       = "pop_density",
+    height.scale = tm_scale_continuous(limits = pop_density_range),
+    fill.legend  = tm_legend(title = "Education (% applied sci.)"),
+    options      = opt_tm_polygons_3d(height.min = 2000)
+  ) +
+  tm_maplibre(pitch = 45)
 ```

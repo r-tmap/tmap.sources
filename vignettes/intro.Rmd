@@ -68,11 +68,12 @@ tmap_mode("maplibre")
 
 ## Data processing
 
-Important to realise is that the internal data processing in tmap is skipped entirely. So getting all the categoires (categorical scale), or retrieving the range and optimal interval breaks (interval scale) on basis on the complete data is not possbile, simply because it would take a lot of computation time (some remote datasets may cover trillions of objects). Instead, two scales are supported:
+Important to realise is that the internal data processing in tmap is skipped entirely. So getting all the categoires (categorical scale), or retrieving the range and optimal interval breaks (interval scale) on basis on the complete data is not possbile, simply because it would take a lot of computation time (some remote datasets may cover trillions of objects). Instead, these scales are supported:
 
 * As-is scale `tm_scale_asis`, in which the visual values (e.g. color values) are already contained in the data.
 * The categorical scale `tm_scale_categorical`, where the data contains the levels. The user has to specify the used mapping, so a vector of levels and a vector of correspoding visual values (e.g. colors). And optionally a vector of corresponding labels (in case they differ from levels).
+* The continuous scale `tm_scale_continuous` is used to scale the height of 3d polygons.
 
-It would also be possible to implement numeric scale (interval and continuous). For developers: pull requests welcome.
+Other scales, in particular numeric scales (both interval and continuous) will be added later.
 
 

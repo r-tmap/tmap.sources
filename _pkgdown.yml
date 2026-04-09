@@ -29,7 +29,7 @@ navbar:
     pmtiles:
       text: PMTiles
       menu:
-      - text: PMTiles - self created
+      - text: Self-created PMTiles
         href: articles/pmtiles_local.html
       - text: PMTiles - Overture
         href: articles/pmtiles_overture.html

@@ -3,25 +3,36 @@ template:
   bootstrap: 5
   bslib:
     primary: "#5f8640"
-
-# figures:
   dev: ragg::agg_png
   dpi: 300
-
 development:
   version_tooltip: "tmap.sources documentation"
 
 reference:
-
-- title: GEt tmap source meta data
+- title: Source metadata
   contents:
-  - tmap_source_meta
+  - tmap_src_meta
+  - tmap_src_overture
+- title: Metadata accessors
+  desc: Convenience functions to extract layers, variables, and categories from a metadata object.
+  contents:
+  - tmap_src_accessors
 
 navbar:
   structure:
-    left:  [reference, pmtiles, news]
+    left: [intro, pmtiles, reference, news]
   components:
     home: ~
+    intro:
+      text: Introduction
+      href: articles/intro.html
     pmtiles:
       text: PMTiles
-      href: articles/pmtiles
+      menu:
+      - text: PMTiles - self created
+        href: articles/pmtiles_local.html
+      - text: PMTiles - Overture
+        href: articles/pmtiles_overture.html
+    reference:
+      text: Reference
+      href: reference/index.html

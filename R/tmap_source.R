@@ -1,17 +1,3 @@
-#' Get tmap source meta data
-#'
-#' Get tmap source meta data
-#'
-#' @param x url to the source, or file path in case it is stored locally
-#' @import tmap
-#' @import freestiler
-#' @import cli
-#' @export
-#' @return list of meta data
-tmap_source_meta = function(x) {
-	get_source_info(x, start_local_host = FALSE)
-}
-
 get_bbox_meta = function(meta) {
 	sf::st_bbox(structure(meta$header$bounds, names = c("xmin", "ymin", "xmax", "ymax")), crs = sf::st_crs("OGC:CRS84"))
 }

@@ -1,5 +1,5 @@
 ---
-title: PMTiles
+title: PMTiles - overture
 output: 
   bookdown::html_vignette2:
 editor_options: 
@@ -39,17 +39,7 @@ knitr::knit_hooks$set(output = function(x, options) {
 
 ## Introduction
 
-Until version 4.3, it was only possible to visualize spatial data stored in memory with `tmap`, e.g. objects from the class packages `sf`, `terra`, or `stars`. This package, `tmap.sources` makes it possible to visualize remote spatial data. Currently only `PMTiles`, a remote tile-based data sources are supported, but support for other remote data sources will be added later.
-
-To run `tmap.sources`, besides `tmap`, another package is required, namely [`tmap.mapgl`](https://r-tmap.github.io/tmap.mapgl/articles/mapgl), because we require the tmap mode `"maplibre"`:
-
-
-```{r}
-library(tmap)
-library(tmap.mapgl)
-library(tmap.sources)
-tmap_mode("maplibre")
-```
+<to be added, some introduction about PMTiles format>
 
 ## Remote PMTiles file
 
@@ -57,7 +47,7 @@ OvertureMaps contain a few very large PMTiles. The following is one with the [bu
 
 
 ```{r, fig.height = 3.5}
-urls = tmap_source_overture()
+urls = tmap_src_overture()
 
 tm_shape(
   urls$building, 
@@ -73,13 +63,14 @@ We can also use a categorical color palette:
 library(tmap)
 library(tmap.sources)
 
-urls = tmap_source_overture()
-meta = tmap_source_meta(urls$buildings)
-vars = tmap_source_vars(meta, layer = "building")
-cats = tmap_source_cats(meta, layer = "building", var = "subtype")
+urls = tmap_src_overture()
+meta = tmap_src_meta(urls$buildings)
+vars = tmap_src_vars(meta, layer = "building")
+cats = tmap_src_cats(meta, layer = "building", var = "subtype")
 
 tm_shape(
-  url,
+  urls$buildings,
+  layer = "building",
   bbox = "Amsterdam") +
 tm_polygons(
   fill = "subtype",

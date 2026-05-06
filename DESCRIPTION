@@ -15,7 +15,7 @@ Encoding: UTF-8
 Depends: 
     R (>= 4.1)
 Imports:
-    tmap (>= 4.2),
+    tmap (>= 4.3),
     sf,
     httr2,
     jsonlite,
@@ -29,4 +29,4 @@ Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap, walkerke/mapgl, r-tmap/t
 URL: https://github.com/r-tmap/tmap.sources
 BugReports: https://github.com/r-tmap/tmap.sources/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0

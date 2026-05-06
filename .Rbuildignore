@@ -19,3 +19,6 @@ README
 ^man/figures/map
 ^CRAN-SUBMISSION$
 sandbox
+^\.positai$
+^\.claude$
+^.*\.pmtiles$

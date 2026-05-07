@@ -8,6 +8,7 @@ how to create PMTiles from `sf` objects using the `freestiler` package,
 and how to visualize them with `tmap.mapgl`.
 
 ``` r
+
 library(tmap)
 library(tmap.mapgl)
 library(tmap.sources)
@@ -33,6 +34,7 @@ Two things to decide before writing a PMTiles file:
 ### Preparing the data
 
 ``` r
+
 data("NLD_dist", package = "tmap")
 
 breaks  <- c(0, 21.5, 29.5, 39.8, 51.5, 90)
@@ -48,6 +50,7 @@ NLD_dist$edu_fill[is.na(NLD_dist$edu_fill)] <- colorNA
 ### Creation of PMTiles
 
 ``` r
+
 freestile(
   NLD_dist,
   "NLD_dist.pmtiles",
@@ -55,7 +58,7 @@ freestile(
   min_zoom = 4,
   max_zoom = 15
 )
-#> Creating MLT tiles (zoom 4-15) for 3340 features across 1 layer...
+#> Creating MVT tiles (zoom 4-15) for 3340 features across 1 layer...
 #>   Transforming layer 'edu' to WGS84...
 #>   Parsed 3340 features across 1 layer in 0.0s
 #>   Zoom  4/15:      1 tiles ...
@@ -65,27 +68,27 @@ freestile(
 #>   Zoom  6/15:      4 tiles ...
 #>                 4 encoded (0.1s)
 #>   Zoom  7/15:      6 tiles ...
-#>                 6 encoded (0.0s)
+#>                 6 encoded (0.1s)
 #>   Zoom  8/15:     15 tiles ...
 #>                15 encoded (0.0s)
 #>   Zoom  9/15:     36 tiles ...
 #>                34 encoded (0.0s)
 #>   Zoom 10/15:    105 tiles ...
-#>               100 encoded (0.0s)
+#>               100 encoded (0.1s)
 #>   Zoom 11/15:    354 tiles ...
 #>               348 encoded (0.1s)
 #>   Zoom 12/15:   1270 tiles ...
 #>              1217 encoded (0.1s)
 #>   Zoom 13/15:   4749 tiles ...
-#>              4485 encoded (0.1s)
+#>              4485 encoded (0.2s)
 #>   Zoom 14/15:  18235 tiles ...
-#>             16934 encoded (0.3s)
+#>             16934 encoded (0.4s)
 #>   Zoom 15/15:  71155 tiles ...
-#>             65366 encoded (1.0s)
-#>   Total: 88511 tiles in 1.9s
-#>   Writing PMTiles archive (88511 tiles) ...
+#>             65364 encoded (1.1s)
+#>   Total: 88509 tiles in 2.2s
+#>   Writing PMTiles archive (88509 tiles) ...
 #>   PMTiles write: 1.0s
-#> Created NLD_dist.pmtiles (38.9 MB)
+#> Created NLD_dist.pmtiles (43.7 MB)
 #> View with: view_tiles("NLD_dist.pmtiles")
 ```
 
@@ -96,6 +99,7 @@ freestile(
 infer it from raw color values.
 
 ``` r
+
 tm_shape("NLD_dist.pmtiles") +
   tm_polygons(fill = "edu_fill") +
   tm_add_legend(fill = pal, labels = levels(NLD_dist$edu_cat),
@@ -106,6 +110,7 @@ tm_shape("NLD_dist.pmtiles") +
 handles the color mapping and legend automatically.
 
 ``` r
+
 tm_shape("NLD_dist.pmtiles") +
   tm_polygons(
     fill        = "edu_cat",
@@ -124,6 +129,7 @@ keep the six most prominent ranks and convert to a factor for
 categorical styling.
 
 ``` r
+
 data("World_rivers", package = "tmap")
 World_rivers <- World_rivers[World_rivers$scalerank <= 6, ]
 World_rivers$rank_cat <- factor(paste0("rank ", World_rivers$scalerank),
@@ -134,9 +140,10 @@ river_pal <- c4a("-seaborn.crest", 6)
 ### Creation of PMTiles
 
 ``` r
+
 freestile(World_rivers, "World_rivers.pmtiles",
           layer_name = "rivers", min_zoom = 0, max_zoom = 10)
-#> Creating MLT tiles (zoom 0-10) for 1619 features across 1 layer...
+#> Creating MVT tiles (zoom 0-10) for 1619 features across 1 layer...
 #>   Parsed 1619 features across 1 layer in 0.0s
 #>   Zoom  0/10:      1 tiles ...
 #>                 1 encoded (0.0s)
@@ -163,13 +170,14 @@ freestile(World_rivers, "World_rivers.pmtiles",
 #>   Total: 24734 tiles in 0.2s
 #>   Writing PMTiles archive (24734 tiles) ...
 #>   PMTiles write: 0.3s
-#> Created World_rivers.pmtiles (5.3 MB)
+#> Created World_rivers.pmtiles (5.2 MB)
 #> View with: view_tiles("World_rivers.pmtiles")
 ```
 
 ### Visualization
 
 ``` r
+
 tm_shape("World_rivers.pmtiles") +
   tm_lines(
     lwd        = 6,
@@ -195,6 +203,7 @@ feature centroid.
 ### Preparing the data
 
 ``` r
+
 NLD_dist$edu_cat <- cut(NLD_dist$edu_appl_sci, breaks = breaks)
 
 # centroid step required before freestile() when source is polygon sf
@@ -205,9 +214,10 @@ NLD_pts <- sf::st_centroid(NLD_dist)
 ### Creation of PMTiles
 
 ``` r
+
 freestile(NLD_pts, "NLD_dist_pts.pmtiles",
           layer_name = "districts", min_zoom = 5, max_zoom = 15)
-#> Creating MLT tiles (zoom 5-15) for 3340 features across 1 layer...
+#> Creating MVT tiles (zoom 5-15) for 3340 features across 1 layer...
 #>   Transforming layer 'districts' to WGS84...
 #>   Parsed 3340 features across 1 layer in 0.0s
 #>   Zoom  5/15:      1 tiles ...
@@ -232,16 +242,17 @@ freestile(NLD_pts, "NLD_dist_pts.pmtiles",
 #>              3465 encoded (0.0s)
 #>   Zoom 15/15:   4157 tiles ...
 #>              3970 encoded (0.0s)
-#>   Total: 11327 tiles in 0.1s
+#>   Total: 11327 tiles in 0.2s
 #>   Writing PMTiles archive (11327 tiles) ...
 #>   PMTiles write: 0.1s
-#> Created NLD_dist_pts.pmtiles (6.3 MB)
+#> Created NLD_dist_pts.pmtiles (7.4 MB)
 #> View with: view_tiles("NLD_dist_pts.pmtiles")
 ```
 
 ### Visualization
 
 ``` r
+
 tm_shape("NLD_dist_pts.pmtiles") +
   tm_dots(
     fill        = "edu_cat",
@@ -262,6 +273,7 @@ to find the appropriate values.
 ### Preparing the data
 
 ``` r
+
 NLD_dist$edu_fill <- pal[as.integer(
   cut(NLD_dist$edu_appl_sci, breaks = breaks, include.lowest = TRUE)
 )]
@@ -278,6 +290,7 @@ The same `NLD_dist.pmtiles` written above already contains
 was called after adding the column.
 
 ``` r
+
 # only needed if NLD_dist.pmtiles was created before pop_density was added
 freestile(NLD_dist, "NLD_dist.pmtiles",
           layer_name = "edu", min_zoom = 4, max_zoom = 15)
@@ -286,6 +299,7 @@ freestile(NLD_dist, "NLD_dist.pmtiles",
 ### Visualization
 
 ``` r
+
 tm_shape("NLD_dist.pmtiles") +
   tm_polygons_3d(
     fill         = "edu_fill",

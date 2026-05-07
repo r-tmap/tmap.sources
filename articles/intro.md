@@ -10,6 +10,7 @@ For instance, the dataset `NLD_dist` is an `sf` object. A choropleth is
 created as follows:
 
 ``` r
+
 library(tmap)
 tm_shape(NLD_dist) +
     tm_polygons(
@@ -34,6 +35,7 @@ namely
 because we require the tmap mode `"maplibre"`:
 
 ``` r
+
 library(tmap.mapgl)
 library(tmap.sources)
 tmap_mode("maplibre")

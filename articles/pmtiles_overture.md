@@ -5,6 +5,7 @@
 \<to be added, some introduction about PMTiles format\>
 
 ``` r
+
 library(tmap)
 library(tmap.mapgl)
 library(tmap.sources)
@@ -20,6 +21,7 @@ the [buildings](https://docs.overturemaps.org/guides/buildings/), across
 the World.
 
 ``` r
+
 library(tmap)
 library(tmap.mapgl)
 library(tmap.sources)
@@ -39,6 +41,7 @@ tm_maplibre(zoom = 14)
 We can also use a categorical color palette:
 
 ``` r
+
 urls = tmap_src_overture()
 meta = tmap_src_meta(urls$buildings)
 vars = tmap_src_vars(meta, layer = "building")

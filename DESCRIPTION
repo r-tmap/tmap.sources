@@ -22,8 +22,8 @@ Imports:
     jsonlite,
     freestiler,
     data.table,
-    cli,
-    servr
+    servr,
+    cli
 Remotes:
     walkerke/freestiler
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap, walkerke/mapgl, r-tmap/tmap.mapgl

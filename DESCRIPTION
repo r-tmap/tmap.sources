@@ -24,8 +24,6 @@ Imports:
     data.table,
     servr,
     cli
-Remotes:
-    walkerke/freestiler
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap, walkerke/mapgl, r-tmap/tmap.mapgl
 URL: https://github.com/r-tmap/tmap.sources
 BugReports: https://github.com/r-tmap/tmap.sources/issues

@@ -14,7 +14,9 @@ A list with elements: \code{input}, \code{type},
 \code{tile_type}, \code{url}, \code{layers}, \code{layer_vars},
 \code{bbox}, \code{zoom}.  Each element of \code{layer_vars} is a
 data frame with columns \code{variable}, \code{class},
-\code{categories} (list), \code{palette} (list).
+\code{categories} (list), \code{palette} (list). Returns \code{NULL}
+if the required network resource is unavailable, rather than raising
+an error.
 }
 \description{
 Returns all known metadata for a PMTiles source. For Overture Maps URLs,

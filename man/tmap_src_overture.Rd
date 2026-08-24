@@ -13,7 +13,8 @@ such as \code{"2026-03-18"} or \code{"2026-03-18.0"}.}
 \value{
 Named list of URLs: \code{addresses}, \code{base},
 \code{buildings}, \code{divisions}, \code{places},
-\code{transportation}.
+\code{transportation}. Returns \code{NULL} if the required network
+resource is unavailable, rather than raising an error.
 }
 \description{
 Returns a named list of PMTiles URLs for all Overture themes. When

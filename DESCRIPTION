@@ -1,6 +1,6 @@
 Package: tmap.sources
 Title: Data Sources for 'tmap'
-Version: 0.1
+Version: 0.1.1
 LazyData: true
 Authors@R: c(
 	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))

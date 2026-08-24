@@ -250,12 +250,25 @@
 #'   \code{tile_type}, \code{url}, \code{layers}, \code{layer_vars},
 #'   \code{bbox}, \code{zoom}.  Each element of \code{layer_vars} is a
 #'   data frame with columns \code{variable}, \code{class},
-#'   \code{categories} (list), \code{palette} (list).
+#'   \code{categories} (list), \code{palette} (list). Returns \code{NULL}
+#'   if the required network resource is unavailable, rather than raising
+#'   an error.
 #' @import tmap
 #' @import freestiler
 #' @export
 tmap_src_meta <- function(x) {
-	meta  <- get_source_info(x, start_local_host = FALSE)
+	if (is.null(x)) return(NULL)
+
+	meta <- tryCatch(
+		get_source_info(x, start_local_host = FALSE),
+		error = function(e) {
+			message("Could not fetch source metadata for '", x, "': ",
+					conditionMessage(e))
+			NULL
+		}
+	)
+	if (is.null(meta)) return(NULL)
+
 	theme <- .overture_theme_from_url(x)
 	if (!is.null(theme)) {
 		meta$layer_vars <- .annotate_layer_vars(meta$layer_vars, theme)
@@ -278,7 +291,8 @@ tmap_src_meta <- function(x) {
 #'   such as \code{"2026-03-18"} or \code{"2026-03-18.0"}.
 #' @return Named list of URLs: \code{addresses}, \code{base},
 #'   \code{buildings}, \code{divisions}, \code{places},
-#'   \code{transportation}.
+#'   \code{transportation}. Returns \code{NULL} if the required network
+#'   resource is unavailable, rather than raising an error.
 #' @export
 tmap_src_overture <- function(release = "latest") {
 	themes <- c("addresses", "base", "buildings", "divisions",
@@ -286,6 +300,7 @@ tmap_src_overture <- function(release = "latest") {
 
 	if (identical(release, "latest")) {
 		release <- .overture_latest_release()        # returns e.g. "2026-03-18.0"
+		if (is.null(release)) return(NULL)
 	} else {
 		if (!grepl("\\.\\d+$", release)) release <- paste0(release, ".0")
 	}
@@ -297,13 +312,17 @@ tmap_src_overture <- function(release = "latest") {
 .overture_latest_release <- function() {
 	resp <- tryCatch(
 		jsonlite::fromJSON("https://stac.overturemaps.org/catalog.json"),
-		error = function(e) cli::cli_abort(
-			"Could not fetch Overture STAC catalog: {conditionMessage(e)}"
-		)
+		error = function(e) NULL
 	)
 	release <- resp[["latest"]]
-	if (is.null(release))
-		cli::cli_abort("Unexpected STAC catalog format: no 'latest' field found.")
+	if (is.null(release)) {
+		message(
+			"Could not determine latest Overture release from the STAC catalog ",
+			"(resource may be unavailable). Returning NULL; ",
+			"pass an explicit `release` (e.g. \"2026-03-18\") to avoid this."
+		)
+		return(NULL)
+	}
 	release
 }
 
@@ -328,17 +347,24 @@ tmap_src_overture <- function(release = "latest") {
 #'     (named character vector of hex colours), both \code{NULL} when no
 #'     catalogue entry exists for \code{layer.var}.}
 #' }
+#' Each accessor returns \code{NULL} if \code{meta} is \code{NULL} (e.g.
+#' because the required network resource was unavailable upstream), rather
+#' than raising an error.
 #' @example examples/tmap_src_accessors.R
 #' @name tmap_src_accessors
 NULL
 
 #' @rdname tmap_src_accessors
 #' @export
-tmap_src_layers <- function(meta) meta$layers
+tmap_src_layers <- function(meta) {
+	if (is.null(meta)) return(NULL)
+	meta$layers
+}
 
 #' @rdname tmap_src_accessors
 #' @export
 tmap_src_vars <- function(meta, layer = NULL) {
+	if (is.null(meta)) return(NULL)
 	layer <- .resolve_layer(meta, layer)
 	meta$layer_vars[[layer]]
 }
@@ -346,6 +372,7 @@ tmap_src_vars <- function(meta, layer = NULL) {
 #' @rdname tmap_src_accessors
 #' @export
 tmap_src_cats <- function(meta, layer = NULL, var) {
+	if (is.null(meta)) return(NULL)
 	layer <- .resolve_layer(meta, layer)
 	df    <- meta$layer_vars[[layer]]
 	if (!var %in% df$variable)

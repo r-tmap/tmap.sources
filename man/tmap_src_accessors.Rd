@@ -38,21 +38,12 @@ Convenience functions to extract specific parts of the metadata object
 returned by \code{\link{tmap_src_meta}}.
 }
 \examples{
-\dontrun{
 urls <- tmap_src_overture()
 meta <- tmap_src_meta(urls$buildings)
 
 tmap_src_layers(meta)
-#> [1] "building" "building_part"
 
 tmap_src_vars(meta, layer = "building")
 
 tmap_src_cats(meta, layer = "building", var = "subtype")
-#> $categories
-#>  [1] "residential" "commercial" ...
-#> $palette
-#>  residential  commercial ...
-#>  "#f4a460"    "#4169e1"  ...
-}
-
 }

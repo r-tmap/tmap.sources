@@ -25,7 +25,7 @@ Imports:
     cli
 Suggests:
     tmap.mapgl (>= 0.2-1)	
-Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap, walkerke/mapgl, r-tmap/tmap.mapgl
+Config/Needs/website: bookdown, rmarkdown, r-tmap/tmaptools, r-tmap/tmap, walkerke/mapgl, r-tmap/tmap.mapgl
 URL: https://github.com/r-tmap/tmap.sources
 BugReports: https://github.com/r-tmap/tmap.sources/issues
 Roxygen: list(markdown = TRUE)
